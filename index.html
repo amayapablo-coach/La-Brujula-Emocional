@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Brújula Emocional - JP Escuela de Coaching</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3e8ff 0%, #dbeafe 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        /* Colores de la rueda de Plutchik para los modales */
+        .color-joy { background-color: #ffeb3b; }
+        .color-trust { background-color: #8bc34a; }
+        .color-fear { background-color: #673ab7; }
+        .color-surprise { background-color: #03a9f4; }
+        .color-sadness { background-color: #2196f3; }
+        .color-disgust { background-color: #4caf50; }
+        .color-anger { background-color: #f44336; }
+        .color-anticipation { background-color: #ff9800; }
+        
+        .color-optimism { background-color: #ffc107; }
+        .color-love { background-color: #9c27b0; }
+        .color-submission { background-color: #9fa8da; }
+        .color-awe { background-color: #7986cb; }
+        .color-disappointment { background-color: #4dd0e1; }
+        .color-remorse { background-color: #ff5722; }
+        .color-contempt { background-color: #8d6e63; }
+        .color-aggressiveness { background-color: #ef5350; }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            max-width: 600px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #475569;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: #0f172a;
+        }
+
+        .whatsapp-link {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-link:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 150, 0, 0.3);
+        }
+
+        .main-link {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .main-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container text-center">
+        <!-- Título principal -->
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-10 mb-6 text-purple-800">
+            La Brújula Emocional
+        </h1>
+
+        <!-- Introducción -->
+        <div class="card bg-gradient-to-br from-blue-100 to-purple-100">
+            <h2 class="section-title text-purple-800">¿Qué son las emociones?</h2>
+            <p class="text-lg text-purple-700">
+                Las emociones son respuestas psicofisiológicas que nos preparan para reaccionar ante estímulos del entorno. Son la brújula de nuestro mundo interno, y al conocerlas, podemos navegar la vida con mayor conciencia y propósito. Esta herramienta te ayudará a identificar lo que sientes y a comprender su origen.
+            </p>
+        </div>
+
+        <!-- Rueda de emociones -->
+        <div class="card bg-white p-8">
+            <p class="subtitle text-gray-700 mb-6">
+                **Elige cómo te sientes hoy:**
+            </p>
+            <div class="relative max-w-lg mx-auto">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Plutchik_wheel.svg" usemap="#emotion-map" class="w-full h-auto rounded-full" alt="Rueda de Emociones de Robert Plutchik">
+                
+                <map name="emotion-map">
+                    <!-- Emociones primarias (8) -->
+                    <area shape="poly" coords="499,35,499,191,598,247,700,323,769,425,798,527,769,630,700,729,598,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="alegria">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="confianza">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="miedo">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="sorpresa">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="tristeza">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="aversión">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="ira">
+                    <area shape="poly" coords="499,35,499,191,400,247,298,323,229,425,200,527,229,630,298,729,400,799,499,864,499,799,409,737,320,662,271,571,231,461,271,365,320,284,409,211" href="#" data-emotion="anticipacion">
+
+                    <!-- Emociones combinadas (8) -->
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="optimismo">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="amor">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,668,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="sumision">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="susto">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="melancolia">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="remordimiento">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="desprecio">
+                    <area shape="poly" coords="499,35,499,191,659,191,739,323,769,425,749,527,729,630,659,729,499,799,499,864,499,799,589,737,678,662,729,571,769,461,729,365,678,284,589,211" href="#" data-emotion="agresividad">
+                </map>
+            </div>
+        </div>
+
+        <!-- Anexo de Recursos -->
+        <div class="card bg-gray-50 border-gray-200">
+            <h2 class="section-title text-center text-gray-800">Recursos para la Gestión Emocional</h2>
+            <div class="grid md:grid-cols-3 gap-6 mt-6">
+                <!-- Música Relajante -->
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-sm">
+                    <h3 class="font-bold text-xl text-blue-700 mb-3">Música Relajante</h3>
+                    <ul class="list-none space-y-2 text-gray-700">
+                        <li><a href="https://www.youtube.com/playlist?list=PLeF3TWvqI4WDfyldebmlgolNjdXqFax3r" target="_blank" class="hover:text-blue-500 hover:underline transition-colors block">Música para Meditar y Aliviar el Estrés</a></li>
+                        <li><a href="https://www.youtube.com/playlist?list=PLDd92EK9sTlCXWZFYn7dRiCGoBmpequE5" target="_blank" class="hover:text-blue-500 hover:underline transition-colors block">Música de relajación y meditación para calmar la mente</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=fBoTyQ_iAIo" target="_blank" class="hover:text-blue-500 hover:underline transition-colors block">Música de Meditación y Suave Gongos Tibetanos</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Meditaciones Guiadas -->
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-200 shadow-sm">
+                    <h3 class="font-bold text-xl text-purple-700 mb-3">Meditaciones Guiadas</h3>
+                    <ul class="list-none space-y-2 text-gray-700">
+                        <li><a href="https://www.youtube.com/watch?v=3oCC4NDgYrY" target="_blank" class="hover:text-purple-500 hover:underline transition-colors block">Meditación para principiantes (12 minutos)</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=FAk0K00j1ps" target="_blank" class="hover:text-purple-500 hover:underline transition-colors block">Meditación Guiada de la mañana</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=7WDp1zKJ1Ew" target="_blank" class="hover:text-purple-500 hover:underline transition-colors block">Meditación para principiantes: Libera la tensión</a></li>
+                    </ul>
+                </div>
+
+                <!-- Consejos -->
+                <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200 shadow-sm">
+                    <h3 class="font-bold text-xl text-yellow-700 mb-3">Consejos y Artículos</h3>
+                    <ul class="list-none space-y-2 text-gray-700">
+                        <li><a href="https://conecta.tec.mx/es/noticias/nacional/salud/7-tips-para-regular-tus-emociones-y-lograr-salud-mental" target="_blank" class="hover:text-yellow-500 hover:underline transition-colors block">7 tips para regular tus emociones</a></li>
+                        <li><a href="https://www.lopezibor.com/gestionar-las-emociones/" target="_blank" class="hover:text-yellow-500 hover:underline transition-colors block">10 consejos profesionales para aprender</a></li>
+                        <li><a href="https://psicologiaymente.com/psicologia/gestion-emocional-dominar-emociones" target="_blank" class="hover:text-yellow-500 hover:underline transition-colors block">10 claves para dominar tus emociones</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enlace a la página principal -->
+        <a href="https://www.jpescueladecoaching.com" target="_blank" class="main-link inline-block mt-8 text-blue-600 font-semibold text-lg hover:text-blue-800 transition-colors">
+            Visita nuestra Escuela de Coaching
+        </a>
+    </div>
+
+    <!-- Modal de detalle de emoción -->
+    <div id="emotion-modal" class="modal">
+        <div class="modal-content color-joy" id="modal-card">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <h3 id="modal-title" class="text-3xl font-bold mb-4"></h3>
+            
+            <div id="modal-content-container" class="space-y-6">
+                <!-- Secciones de contenido -->
+                <div>
+                    <h4 class="font-semibold text-xl border-b-2 pb-1 mb-2">Significado</h4>
+                    <p id="modal-meaning"></p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl border-b-2 pb-1 mb-2">Posibles Causas</h4>
+                    <ul id="modal-causes" class="list-disc pl-5"></ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-xl border-b-2 pb-1 mb-2">Herramientas</h4>
+                    <ul id="modal-tools" class="list-disc pl-5"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de contacto de WhatsApp flotante -->
+    <a href="https://wa.me/5492567582117" target="_blank" class="whatsapp-link bg-green-500 text-white font-bold py-3 px-6 rounded-full inline-block shadow-lg hover:bg-green-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9.5a7.5 7.5 0 10-15 0 7.5 7.5 0 0015 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 19l4-4m0 0l-4-4m4 4H6" />
+        </svg>
+        Contacta con un coach
+    </a>
+
+    <script>
+        // Objeto con el contenido de cada emoción
+        const emotionsContent = {
+            alegria: {
+                title: "Alegría",
+                colorClass: "bg-yellow-100 text-yellow-900 border-yellow-200",
+                meaning: "Estado de bienestar y satisfacción, una sensación de gozo y felicidad.",
+                causes: ["Lograr una meta o un objetivo.", "Recibir buenas noticias.", "Estar con seres queridos.", "Experimentar un momento de diversión o juego."],
+                tools: ["Agradece el momento presente.", "Comparte tu alegría con otros.", "Haz una lista de lo que te hace feliz.", "Disfruta de la emoción sin pensar en el futuro."],
+            },
+            confianza: {
+                title: "Confianza",
+                colorClass: "bg-green-100 text-green-900 border-green-200",
+                meaning: "Un sentimiento de seguridad en uno mismo y en los demás, la creencia en que las cosas saldrán bien.",
+                causes: ["Superar un desafío personal.", "Recibir apoyo de alguien.", "Cumplir una promesa o un compromiso.", "Sentir que tienes el control de una situación."],
+                tools: ["Recuerda tus logros pasados.", "Practica una habilidad en la que eres bueno.", "Ponte pequeñas metas alcanzables.", "Rodéate de personas que te inspiren confianza."],
+            },
+            miedo: {
+                title: "Miedo",
+                colorClass: "bg-purple-100 text-purple-900 border-purple-200",
+                meaning: "Una emoción de anticipación ante un peligro real o imaginario. Sirve como un mecanismo de protección.",
+                causes: ["Enfrentarse a lo desconocido.", "Amenazas a la seguridad física o emocional.", "Pensar en escenarios negativos.", "Falta de control sobre una situación."],
+                tools: ["Respira profundamente para calmarte.", "Habla sobre tus miedos con alguien de confianza.", "Identifica qué es lo que realmente te asusta.", "Enfrenta el miedo dando pequeños pasos controlados."],
+            },
+            sorpresa: {
+                title: "Sorpresa",
+                colorClass: "bg-cyan-100 text-cyan-900 border-cyan-200",
+                meaning: "Reacción a algo inesperado. Es la emoción más breve y sirve para reorientar nuestra atención.",
+                causes: ["Un evento inesperado, positivo o negativo.", "Recibir un regalo inesperado.", "Un cambio repentino en el entorno."],
+                tools: ["Permítete sentir la emoción sin juzgarla.", "Tómate un momento para procesar la información.", "Busca el origen de la sorpresa para entenderla mejor."],
+            },
+            tristeza: {
+                title: "Tristeza",
+                colorClass: "bg-blue-100 text-blue-900 border-blue-200",
+                meaning: "Una emoción de dolor o pena ante una pérdida, decepción o situación difícil. Nos invita a la introspección.",
+                causes: ["Una pérdida importante (trabajo, relación).", "Sentimiento de soledad.", "Decepción personal o de los demás.", "Fracaso en alcanzar una meta."],
+                tools: ["Permítete llorar y sentir la emoción.", "Escribe en un diario sobre lo que sientes.", "Busca apoyo en amigos o familiares.", "Escucha música que te ayude a procesar la emoción."],
+            },
+            aversión: {
+                title: "Aversión",
+                colorClass: "bg-emerald-100 text-emerald-900 border-emerald-200",
+                meaning: "Un sentimiento de rechazo o desagrado hacia algo o alguien. Nos protege de lo que consideramos dañino.",
+                causes: ["Un olor, sabor o vista desagradable.", "Una persona o situación que viola tus valores.", "Comportamientos que consideras inmorales."],
+                tools: ["Aléjate de la fuente de aversión si es posible.", "Comunica tus límites de manera asertiva.", "Identifica la causa del rechazo y evalúa si es una protección necesaria."],
+            },
+            ira: {
+                title: "Ira",
+                colorClass: "bg-red-100 text-red-900 border-red-200",
+                meaning: "Una emoción fuerte de enfado o frustración. Surge ante una injusticia percibida o un obstáculo.",
+                causes: ["Sentirse traicionado o irrespetado.", "Frustración por no poder controlar una situación.", "Un ataque verbal o físico.", "Límites personales invadidos."],
+                tools: ["Respira profundo para calmar el cuerpo.", "Sal a caminar o haz ejercicio para liberar la energía.", "Identifica la causa de tu ira.", "Expresa tu frustración de manera constructiva, no destructiva."],
+            },
+            anticipacion: {
+                title: "Anticipación",
+                colorClass: "bg-orange-100 text-orange-900 border-orange-200",
+                meaning: "Una emoción de expectativa hacia algo futuro. Puede ser positiva o negativa.",
+                causes: ["Prepararse para un evento importante.", "Esperar los resultados de un proyecto.", "El inicio de algo nuevo, como un viaje o un trabajo."],
+                tools: ["Planifica lo que puedes controlar.", "Céntrate en el presente para reducir la ansiedad.", "Utiliza esta energía para prepararte mejor."],
+            },
+            optimismo: {
+                title: "Optimismo",
+                colorClass: "bg-amber-100 text-amber-900 border-amber-200",
+                meaning: "Un sentimiento de esperanza y confianza en el futuro. Es la combinación de alegría y anticipación.",
+                causes: ["Creer que las cosas mejorarán.", "Tener una actitud positiva.", "Visualizar un futuro exitoso."],
+                tools: ["Haz un plan de acción para tus metas.", "Mantén un diario de gratitud.", "Comparte tu entusiasmo con los demás."],
+            },
+            amor: {
+                title: "Amor",
+                colorClass: "bg-pink-100 text-pink-900 border-pink-200",
+                meaning: "Una conexión profunda y afectuosa. Es la combinación de alegría y confianza.",
+                causes: ["Conectar con alguien de manera profunda.", "Recibir afecto y apoyo.", "Sentirse parte de un grupo o familia."],
+                tools: ["Expresa tu afecto.", "Pasa tiempo de calidad con tus seres queridos.", "Practica la empatía y la compasión."],
+            },
+            sumision: {
+                title: "Sumisión",
+                colorClass: "bg-indigo-100 text-indigo-900 border-indigo-200",
+                meaning: "Ceder o someterse a la voluntad de otra persona o situación. Es la combinación de miedo y confianza.",
+                causes: ["Sentir que no tienes poder de decisión.", "Evitar un conflicto.", "Confiar en que otra persona tiene la mejor solución."],
+                tools: ["Reconoce y valida tus propias necesidades.", "Establece límites de forma respetuosa.", "Busca apoyo para fortalecer tu autonomía."],
+            },
+            susto: {
+                title: "Susto",
+                colorClass: "bg-gray-200 text-gray-800 border-gray-300",
+                meaning: "Una reacción de miedo mezclada con sorpresa. Es la emoción más intensa y breve.",
+                causes: ["Un ruido fuerte e inesperado.", "Una aparición repentina.", "Un evento que te toma completamente por sorpresa."],
+                tools: ["Respira hondo para recuperar el control.", "Identifica la fuente del susto para entenderla.", "Ríete de la situación una vez que haya pasado."],
+            },
+            melancolia: {
+                title: "Melancolía",
+                colorClass: "bg-blue-200 text-blue-900 border-blue-300",
+                meaning: "Un sentimiento de tristeza con un toque de nostalgia. Es la combinación de tristeza y sorpresa.",
+                causes: ["Recordar un pasado feliz que ya no está.", "Sentirse solo o aislado.", "Un evento que te hace sentir la distancia con los demás."],
+                tools: ["Permítete sentir la nostalgia sin juzgarte.", "Conecta con recuerdos positivos.", "Expresa tus sentimientos a través del arte o la escritura."],
+            },
+            remordimiento: {
+                title: "Remordimiento",
+                colorClass: "bg-red-200 text-red-900 border-red-300",
+                meaning: "Sentimiento de culpa y pena por un error cometido. Es la combinación de aversión y tristeza.",
+                causes: ["Hacer algo de lo que te arrepientes.", "Lastimar a alguien, intencionalmente o no.", "No actuar cuando sentiste que debías."],
+                tools: ["Acepta el error y la responsabilidad.", "Pide disculpas si es necesario.", "Aprende de la experiencia y perdónate a ti mismo."],
+            },
+            desprecio: {
+                title: "Desprecio",
+                colorClass: "bg-brown-200 text-brown-900 border-brown-300",
+                meaning: "Sentimiento de superioridad hacia alguien o algo que se considera inferior. Es la combinación de aversión e ira.",
+                causes: ["Ver a alguien que no respeta tus valores.", "Un comportamiento que consideras injusto o indigno."],
+                tools: ["Analiza la situación y busca el origen de tu desprecio.", "Reconoce que tu juicio puede estar sesgado.", "Trata de encontrar un punto de empatía con la otra persona."],
+            },
+            agresividad: {
+                title: "Agresividad",
+                colorClass: "bg-red-200 text-red-900 border-red-300",
+                meaning: "Una manifestación de ira combinada con anticipación. Un impulso para atacar o confrontar.",
+                causes: ["Frustración crónica.", "Sentirse amenazado.", "Anticipar un conflicto y prepararse para él."],
+                tools: ["Identifica la fuente de tu frustración.", "Busca formas saludables de liberar la tensión (ejercicio).", "Practica la comunicación asertiva en lugar de la agresión."],
+            }
+        };
+
+        const modal = document.getElementById('emotion-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMeaning = document.getElementById('modal-meaning');
+        const modalCauses = document.getElementById('modal-causes');
+        const modalTools = document.getElementById('modal-tools');
+        const modalCard = document.getElementById('modal-card');
+
+        // Función para abrir el modal y mostrar la información de la emoción
+        function openModal(emotion) {
+            const content = emotionsContent[emotion];
+            if (content) {
+                // Actualiza el contenido del modal
+                modalTitle.textContent = content.title;
+                modalMeaning.textContent = content.meaning;
+                
+                // Limpia y llena las listas de causas y herramientas
+                modalCauses.innerHTML = '';
+                content.causes.forEach(cause => {
+                    const li = document.createElement('li');
+                    li.textContent = cause;
+                    modalCauses.appendChild(li);
+                });
+
+                modalTools.innerHTML = '';
+                content.tools.forEach(tool => {
+                    const li = document.createElement('li');
+                    li.textContent = tool;
+                    modalTools.appendChild(li);
+                });
+
+                // Añade la clase de color al modal
+                modalCard.className = 'modal-content ' + content.colorClass;
+                
+                // Muestra el modal con transición
+                modal.classList.add('open');
+            }
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modal.classList.remove('open');
+            // Retraso para que la animación de salida se vea
+            setTimeout(() => {
+                // Limpia el contenido para la próxima vez
+                modalTitle.textContent = '';
+                modalMeaning.textContent = '';
+                modalCauses.innerHTML = '';
+                modalTools.innerHTML = '';
+                modalCard.className = 'modal-content';
+            }, 300);
+        }
+
+        // Asigna los eventos de click a las áreas del mapa
+        document.addEventListener('DOMContentLoaded', () => {
+            const emotionAreas = document.querySelectorAll('.emotion-area');
+            emotionAreas.forEach(area => {
+                area.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const emotion = event.target.dataset.emotion;
+                    if (emotion) {
+                        openModal(emotion);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
